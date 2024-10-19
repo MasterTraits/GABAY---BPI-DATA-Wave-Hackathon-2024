@@ -12,6 +12,21 @@ then, run:
 
 go to:
 ```bash
+cd backend
+```
+
+Install packages:
+```bash
+pip install -r requirements.txt
+```
+
+Go back to previous repository
+```bash
+cd ..
+```
+
+go to:
+```bash
 cd frontend
 ```
 
