@@ -1,36 +1,14 @@
 # Instructions
 
-In your terminal run:
+In your VSCODE terminal, choose GIT Bash as your Terminal:
+
+Run
 ```bash
-py -m venv .venv
+./install.sh
 ```
 
-then, run:
+To update the repository
 ```bash
-.venv/Scripts/activate
-```
-
-go to:
-```bash
-cd backend
-```
-
-Install packages:
-```bash
-pip install -r requirements.txt
-```
-
-Go back to previous repository
-```bash
-cd ..
-```
-
-go to:
-```bash
-cd frontend
-```
-
-```bash
-npm install
+./update.sh
 ```
 
