@@ -2,7 +2,7 @@
 
 In your VSCODE terminal, choose GIT Bash as your Terminal:
 
-Run
+Run to install:
 ```bash
 ./install.sh
 ```
@@ -10,5 +10,10 @@ Run
 To update the repository
 ```bash
 ./update.sh
+```
+
+For web devs, run:
+```bash
+./run.sh
 ```
 
