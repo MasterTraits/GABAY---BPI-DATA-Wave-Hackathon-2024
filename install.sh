@@ -20,7 +20,7 @@ else
 fi
 
 echo "Installing dependencies..."
-pip install -r requirements.txt
+pip install requirements.txt
 cd ..
 
 # Install frontend dependencies
