@@ -1,17 +1,25 @@
 #!/bin/bash
 
+echo "Updating your package installers..."
+python -m pip install --upgrade pip 
+npm install -g npm
+
 echo "Adding upstream to your fork..."
 git remote add upstream https://github.com/MasterTraits/JBEG-Clutchers.git
 
 echo "Creating virtual environment..."
-python -m pip install --upgrade pip 
+cd backend
 py -m venv .venv
 
 echo "Activating virtual environment..."
-source .venv/Scripts/activate
+if source .venv/Scripts/activate
+then
+    echo "Virtual environment activated."
+else
+    .venv/Scripts/activate
+fi
 
 echo "Installing dependencies..."
-cd backend
 pip install -r requirements.txt
 cd ..
 

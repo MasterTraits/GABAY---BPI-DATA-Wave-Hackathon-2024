@@ -7,3 +7,5 @@ git pull origin main
 cd frontend 
 git pull origin main
 npm install
+
+cd .. 
