@@ -20,7 +20,7 @@ pip install -r requirements.txt
 cd ..
 
 # Install frontend dependencies
-cd frontend
+cd client
 npm install 
 
 cd .. 
