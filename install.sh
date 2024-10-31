@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Updating your package installers..."
-python -m pip install --upgrade pip 
+python.exe -m pip install --upgrade pip 
 npm install -g npm
 
 echo "Adding upstream to your fork..."
