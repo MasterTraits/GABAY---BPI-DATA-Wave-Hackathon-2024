@@ -1,9 +1,5 @@
 #!/bin/bash
 
-echo "Updating your package installers..."
-python -m pip install --upgrade pip 
-npm install -g npm
-
 echo "Adding upstream to your fork..."
 git remote add upstream https://github.com/MasterTraits/JBEG-Clutchers.git
 
@@ -20,13 +16,11 @@ else
 fi
 
 echo "Installing dependencies..."
-pip install requirements.txt
+pip install -r requirements.txt
 cd ..
 
 # Install frontend dependencies
-git submodule update --init --recursive
 cd frontend
-git remote add upstream https://github.com/MasterTraits/frontend.git
 npm install 
 
 cd .. 
