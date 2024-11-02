@@ -77,12 +77,12 @@ class CsvFileReader():
 reader = CsvFileReader()
 reader.set_csv(r"")#file insertion
 csv_contents = reader.CSVread()
-#print(csv_contents)
+print(csv_contents)
 
 reader = CsvFileReader()
 reader.set_xlsx(r"")
 xlsx_contents = reader.xlcxread()
-#print(xlsx_contents)
+print(xlsx_contents)
 
 
 def split_text_into_chunks(text, chunk_size):
