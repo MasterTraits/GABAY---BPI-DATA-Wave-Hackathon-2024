@@ -1,4 +1,4 @@
 #!/bin/bash
 
-cd frontend
+cd client
 npm run dev
