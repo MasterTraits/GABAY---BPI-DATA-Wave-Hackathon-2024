@@ -73,9 +73,7 @@ class CsvFileReader():
         self.xlsx_data = xlsx_data
         return xlsx_data
 
-
-
-    
+ 
 reader = CsvFileReader()
 reader.set_csv(r"")#file insertion
 csv_contents = reader.CSVread()
