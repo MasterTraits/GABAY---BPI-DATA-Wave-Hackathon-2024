@@ -42,6 +42,7 @@ module.exports = {
       "gold" : "#F4BE37",
       "blue" : "#3F56FF",
       "gray" : "#AFAFAF",
+      "yellow" : "#F4BE37",
     },
     
   },

@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 import AiChatHeader from "@/components/aichat/aiChatHeader";
-
+import Sidebar from "@/components/aichat/sidebar";
 const AiPage = () => {
   const router = useRouter();
 
