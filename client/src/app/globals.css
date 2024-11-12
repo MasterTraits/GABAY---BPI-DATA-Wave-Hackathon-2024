@@ -47,4 +47,7 @@ body {
   .checkbox {
     @apply bg-card text-white py-2 px-4 rounded-full;
   }
+  .aiChatBtn{
+    @apply bg-btnGray rounded-full px-10;
+  }
 }
