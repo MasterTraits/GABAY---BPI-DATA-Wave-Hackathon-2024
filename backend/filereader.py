@@ -1,49 +1,98 @@
 import csv
-from PyPDF2 import PdfFileReader
+import PyPDF2
+import openpyxl
 
-class Filereader():
+
+class PdfFilereader():
     def __init__(self):
         self.pdf_file = None
-        self.csvfile = None
-        self.csv_data = []
+
 
     def set_pdf(self, pdf_path):
         self.pdf_file = open(pdf_path, 'rb')
-        self.pdf_reader = PdfFileReader(self.pdf_file)
+        self.pdf_reader = PyPDF2.PdfReader(self.pdf_file)
 
-    def set_csv(self, csv_path):
-        self.csvfile = csv_path
 
     def PDFread(self):
         all_text = ""
-        for page_num in range(self.pdf_reader.numPages):
-            page = self.pdf_reader.getPage(page_num)
-            text = page.extractText()
+        for page_num in range(len(self.pdf_reader.pages)):
+            page = self.pdf_reader.pages[page_num]
+            text = page.extract_text()
             all_text += text + "\n"
         return all_text
+    
+
+
+#Create an instance of Filereader
+reader = PdfFilereader()
+
+#Set the PDF file path
+reader.set_pdf(r"")#file insertion
+
+# Read and print the PDF contents
+pdf_contents = reader.PDFread()
+print(pdf_contents)
+
+
+class CsvFileReader():
+    def __init__(self):
+        self.csvfile = None
+        self.xlsxfile = None
+        self.csv_data = None
+        self.xlsx_data = None
+
+
+    
+    def set_csv(self, csv_path):
+        self.csvfile = csv_path
+
 
     def CSVread(self):
-        with open(self.csvfile, 'r') as file:
+        if not self.csvfile:
+            return "No CSV file set"
+        with open(self.csvfile, encoding= 'utf-8') as file:
             csv_data = list(csv.reader(file))
             self.csv_data = csv_data
-        return self.csv_data
+        return csv_data
+    
+    def set_xlsx(self, xlsx_path):
+        self.xlsxfile = xlsx_path
+    
+    def xlcxread(self):
+        if not self.xlsxfile:
+            return "No XLSX file set"
+        workbook = openpyxl.load_workbook(self.xlsxfile)
+        sheet = workbook.active
+        xlsx_data = []
+        for row in sheet.iter_rows(values_only=True):  # type: ignore
+            row_data = []
+            for cell in row:
+                row_data.append(cell)
+            xlsx_data.append(row_data)
+
+        self.xlsx_data = xlsx_data
+        return xlsx_data
+
+ 
+reader = CsvFileReader()
+reader.set_csv(r"")#file insertion
+csv_contents = reader.CSVread()
+print(csv_contents)
+
+reader = CsvFileReader()
+reader.set_xlsx(r"")
+xlsx_contents = reader.xlcxread()
+print(xlsx_contents)
 
 
-reader = Filereader()
+def split_text_into_chunks(text, chunk_size):
+    # Split the text into chunks of the specified size
+    chunks = [text[i:i + chunk_size] for i in range(0, len(text), chunk_size)]
+    return chunks
 
-
-pdf_path = "" # Path to the PDF file
-csv_path = "" # Path to the CSV file
-
-reader.set_pdf(pdf_path)
-reader.set_csv(csv_path)
-
-pdf_content = reader.PDFread()
-csv_data = reader.CSVread()
-
-print("PDF Content:")
-print(pdf_content)
-
-print("\nCSV Data:")
-for row in csv_data:
-    print(row)
+#usage
+text = pdf_contents
+chunk_size = 4000 #chunk size
+chunks = split_text_into_chunks(text, chunk_size)
+for chunk in chunks:
+    print(chunk)
