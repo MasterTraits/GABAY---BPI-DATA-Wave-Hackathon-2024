@@ -50,4 +50,5 @@ body {
   .aiChatBtn{
     @apply bg-btnGray rounded-full px-10;
   }
+ 
 }

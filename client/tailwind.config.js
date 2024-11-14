@@ -43,6 +43,7 @@ module.exports = {
       "blue" : "#3F56FF",
       "gray" : "#AFAFAF",
       "yellow" : "#F4BE37",
+      "grayText" : "#959595",
     },
     
   },

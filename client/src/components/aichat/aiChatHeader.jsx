@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react';
 import { IoReorderThreeOutline } from "react-icons/io5";
 import { FaPlus } from "react-icons/fa6";
 import { MdClose } from "react-icons/md";
-
-import Sidebar from "./sidebar";
+import Sidebar from './sidebar';
 function DateComponent() {
     const [currentDateTime, setCurrentDateTime] = useState('');
 
@@ -18,16 +17,16 @@ function DateComponent() {
     return <span className="text-header font-bold my-0">{currentDateTime}</span>;
   }
 
+ 
+  
+
 export default function AiChatHeader(props) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const toggleSidebar = () => {
     setIsSidebarOpen(prevState => !prevState);
   }
 
-  const [sidebarAnim, setSidebarAnim] = useState(false);
-  const sideAnim = () => {
-    setSidebarAnim(!sidebarAnim)
-  }
+
   return (
     <header className='flex items-center justify-between bg-gray-800 p-4'>
       <div className='flex items-center mr-10'> 

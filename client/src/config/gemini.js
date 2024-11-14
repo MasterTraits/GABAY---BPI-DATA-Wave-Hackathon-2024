@@ -1,13 +1,10 @@
-
-import  {
+import {
   GoogleGenerativeAI,
   HarmCategory,
   HarmBlockThreshold,
-}  from "@google/generative-ai";
+} from "@google/generative-ai";
 
-const apiKey = process.env.GEMINI_API_KEY;
-console.log('API Key:', process.env.GEMINI_API_KEY);
-const genAI = new GoogleGenerativeAI({apiKey});
+const genAI = new GoogleGenerativeAI("AIzaSyDPTFNiSqIKZ-7t5XvnfR4ovGAV5kAfwrY");
 
 const model = genAI.getGenerativeModel({
   model: "gemini-1.5-flash",
@@ -24,13 +21,17 @@ const generationConfig = {
 async function runChat(prompt) {
   const chatSession = model.startChat({
     generationConfig,
-    history: [
-    ],
+    history: [],
   });
 
   const result = await chatSession.sendMessage(prompt);
-  console.log(result.response.text());
-  return result.response.text();
+  if (result && result.response && typeof result.response.text === 'function') {
+    const responseText = await result.response.text();
+    console.log(responseText);
+    return responseText;
+  } else {
+    throw new Error('Invalid response from the chat session');
+  }
 }
 
 export default runChat;
