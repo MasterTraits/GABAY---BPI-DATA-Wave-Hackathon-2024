@@ -26,10 +26,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${inter.classname} antialiased`}
+        className={`${inter.className} antialiased`}
       >
-        {children}
+        <div className="sm:hidden">{children}</div>
       </body>
     </html>
   );
-}
+} 
