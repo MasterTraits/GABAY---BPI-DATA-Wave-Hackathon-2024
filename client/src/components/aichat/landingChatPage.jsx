@@ -6,7 +6,7 @@ import Mic from "@/assets/Mic";
   import '@/app/app.module.css'
 import { useState } from 'react'
 
-export default function Home() {
+export default function LandingChatPage({onclick}) {
   const [ openInput, setOpenInput ] = useState({
     inputbool: false,
     placeholderText: "Empower your Business"
@@ -27,16 +27,16 @@ export default function Home() {
                   type="text"
                   className="mx-2 text-lg w-full"
                   placeholder={openInput.placeholderText}
-                  onClick={() => setOpenInput({ ...openInput, inputbool: !openInput.inputbool })}
-                  onChange={() => setOpenInput({ ...openInput, placeholderText: "" })}
                 />
               </div>
               {!openInput.inputbool ? 
                 <div className="flex gap-2 items-center">
                   <Mic className="text-4xl text-header p-2.5 rounded-full bg-btnWhite" />
-                  <BsSendArrowDown className="text-4xl bg-btnWhite p-1.5 rounded-full h-10 w-10" />
+                  <button onclick = {}>
+                  <BsSendArrowDown className="text-2xl bg-btnWhite p-1.5 rounded-full h-10 w-10" />
+                  </button>
                 </div>
-                : ""
+                :""
               }
               
             </div>
@@ -85,10 +85,7 @@ export default function Home() {
         <Image src={Dots} className="fixed bottom-[-5%] left-0" alt="Dots" />
         <div className="fixed bg-blue w-72 h-96 right-[-10%] bottom-[-15%] rounded-full"></div>
       </article>
-      <footer className="flex items-center justify-evenly px-5 backdrop-blur-sm  bg-background/80 fixed bottom-0 right-0 h-20 w-full z-20 rounded-t-2xl">
-        <button className="border-4 border-blue text-blue p-2 w-36 rounded-3xl">Login</button>
-        <button className="bg-blue text-white p-2 rounded-3xl w-36">Register</button>
-      </footer>
+
     </section>
   );
 }
