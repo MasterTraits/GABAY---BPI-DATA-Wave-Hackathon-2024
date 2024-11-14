@@ -1,5 +1,5 @@
 from langflow.load import run_flow_from_json
-from dontenv import load_dotenv
+from dotenv import load_dotenv
 load_dotenv()
 
 def askGab(ChatInput):
