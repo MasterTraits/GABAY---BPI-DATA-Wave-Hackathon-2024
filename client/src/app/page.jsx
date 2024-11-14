@@ -13,7 +13,7 @@ export default function Home() {
   });
 
   return (
-    <section className="bg-background h-screen flex items-center overflow-hidden p-6 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+    <main className="bg-background h-screen flex items-center overflow-hidden p-6 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <section>
         <h1 className="w-3/4 ml-2 text-4xl font-bold tracking-tight mb-6">
           Harness the Power of Data with
@@ -89,6 +89,6 @@ export default function Home() {
         <button className="border-4 border-blue text-blue p-2 w-36 rounded-3xl">Login</button>
         <button className="bg-blue text-white p-2 rounded-3xl w-36">Register</button>
       </footer>
-    </section>
+    </main>
   );
 }
