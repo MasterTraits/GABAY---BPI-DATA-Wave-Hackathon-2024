@@ -61,8 +61,8 @@ export default function page() {
 
   return (
     <>
-      <main className="relative bg-background p-7 h-screen overflow-hidden">
-        <Image src={Dots} className="absolute bottom-0 left-0 z-0" />
+      <main className="relative bg-background py-6 px-6 h-screen overflow-hidden">
+        <Image src={Dots} className="absolute bottom-0 left-0 z-0 opacity-30" />
         <header className="relative flex items-start justify-between mb-5">
           <h1 className="text-4xl font-extrabold text-header tracking-tighter">
             Welcome, <br/> 
@@ -75,9 +75,16 @@ export default function page() {
           </nav>
         </header>
         <section>
-          <Link href="/aichat"><button className="rounded-full py-2 px-4 border-2 border-blue text-blue font-semibold mb-8 hover:scale-[1em]">
-            New Chat &nbsp;+
-          </button></Link>
+          <group className="flex gap-2">
+            <Link href="/aichat">
+              <button className="rounded-full py-2 px-4 border-2 border-blue text-blue hover:bg-blue hover:border-none hover:text-white font-semibold mb-8 hover:scale-[1em]">
+                New Chat &nbsp;+
+              </button>
+            </Link>
+            <button className="rounded-full py-2 px-4 border-2 border-blue text-blue hover:bg-blue hover:border-none hover:text-white font-semibold mb-8 hover:scale-[1em]">
+              Upload
+            </button>
+          </group>
           {/* BUTTONS for Dashboard & Custom */}
           <div className="bg-gold flex items-center justify-evenly h-10 w-full mb-3 *:rounded-[20px_20px_0_0] rounded-[20px_20px_0_0]">
             <p
@@ -100,7 +107,7 @@ export default function page() {
 
           {/* THE CHARTS */}
           {showDashboard && (
-            <div className="grid grid-cols-2 gap-3 justify-center items-center *:rounded-2xl *:bg-white *:p-3 h-full w-full drop-shadow-[0_0_20px_rgb(0,0,0,0.2)]">
+            <div className="grid grid-cols-2 gap-3 justify-center items-center *:rounded-2xl *:bg-white *:p-3 h-full w-full drop-shadow-[0_0_20px_rgb(0,0,0,0.1)]">
               <div onClick={() => setShowAISuggest(!showAISuggest)}>
                 <PieChart
                   chartData={chartData}
