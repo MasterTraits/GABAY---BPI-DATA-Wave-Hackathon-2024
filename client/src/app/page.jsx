@@ -6,13 +6,19 @@ import { BsSendArrowDown } from "react-icons/bs";
 import Mic from "@/assets/Mic";
 import "./app.module.css"
 
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import { useMyContext } from "@/components/QueryContext";
 
 export default function Home() {
-  const [ openInput, setOpenInput ] = useState({
-    inputbool: false,
-    placeholderText: "Empower your Business"
-  });
+  const { setQuery } = useMyContext();
+  const [ openInput, setOpenInput ] = useState(false);
+  const [ inputText, setInputText ] = useState("");
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    setQuery(inputText);
+  }
 
   return (
     <main className="bg-background h-screen flex items-center overflow-hidden p-6 sm:p-20 font-[family-name:var(--font-geist-sans)]">
@@ -22,15 +28,16 @@ export default function Home() {
           <b className="text-[40px] gradient-custom">&nbsp;GABAY</b>
         </h1>
         <div className="w-full pb-5">
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="flex items-center gap-3 bg-white rounded-3xl px-4 h-14 drop-shadow-[0_0_20px_rgb(0,0,0,0.4)]">
               <div className="flex gap-4 items-center w-full">
                 <input
                   type="text"
                   className="mx-2 text-lg w-full"
-                  placeholder={openInput.placeholderText} 
-                  onClick={() => setOpenInput({ ...openInput, inputbool: !openInput.inputbool })}
-                  onChange={() => setOpenInput({ ...openInput, placeholderText: "" })}
+                  placeholder="Empower your Business"
+                  value={inputText} 
+                  onClick={() => setOpenInput(!openInput)}
+                  onChange={(e) => setInputText(e.target.value)}
                 />
               </div>
               {!openInput.inputbool ? 
@@ -38,7 +45,9 @@ export default function Home() {
 
                 : ""
               }
-              <BsSendArrowDown className="text-4xl bg-btnWhite p-1.5 rounded-full h-10 w-10" />
+              <button type="submit" onClick={() => window.location.href = '/dashboard'}>
+                <BsSendArrowDown className="text-4xl bg-btnWhite p-1.5 rounded-full h-10 w-10" />
+              </button>
             </div>
           </form>
         </div>
@@ -54,7 +63,7 @@ export default function Home() {
               <div class="circle"></div>
             </div>
           </button>
-          <button class="btn" type="button">
+          <button class="btn" type="button" onClick={() => window.location.href = '/dashboard'}>
             <strong className="cuzImStrong">PDF</strong>
             <div id="container-stars">
               <div id="stars"></div>

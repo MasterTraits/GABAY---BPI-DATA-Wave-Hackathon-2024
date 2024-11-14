@@ -2,6 +2,8 @@ import localFont from "next/font/local";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
+import QueryContext from "@/components/QueryContext";
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -20,10 +22,8 @@ export const metadata = {
   description: "Empowering businesses with the power of data and AI.",
   keywords: ["business", "empowerment", "GABAY", "next.js"],
   author: "JBEG Clutchers",
-  viewport: "width=device-width, initial-scale=1",
   charset: "UTF-8",
   robots: "index, follow",
-  themeColor: "#ffffff",
 };
 
 export default function RootLayout({ children }) {
@@ -31,8 +31,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body
         className={`${inter.className} antialiased`}
-      >
-        <div className="sm:hidden">{children}</div>
+      > 
+        <QueryContext className="sm:hidden">{children}</QueryContext>
       </body>
     </html>
   );

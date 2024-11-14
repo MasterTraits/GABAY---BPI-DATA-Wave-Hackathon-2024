@@ -18,6 +18,7 @@ import PieChart from "@/components/charts/Piechart";
 
 // React.js
 import { useState } from "react";
+import { useMyContext } from "@/components/QueryContext";
 
 Chart.register(CategoryScale);
 let name = "Guest"; 
@@ -26,6 +27,9 @@ export default function page() {
   const [showDashboard, setShowDashboard] = useState(true);
   const [userVisuals, setUserVisuals] = useState(false);
   const [showAISuggest, setShowAISuggest] = useState(false);
+  const [openInput, setOpenInput] = useState("");
+  const { query } = useMyContext();
+
   const [chartData, setChartData] = useState({
     labels: ["Red", "Orange", "Blue"],
     datasets: [
@@ -58,10 +62,11 @@ export default function page() {
     setUserVisuals(true);
     setShowDashboard(false);
   };
+  
 
   return (
     <>
-      <main className="relative bg-background py-6 px-6 h-screen overflow-hidden">
+      <main className="relative bg-background py-7 px-6 h-screen overflow-hidden">
         <Image src={Dots} className="absolute bottom-0 left-0 z-0 opacity-30" />
         <header className="relative flex items-start justify-between mb-5">
           <h1 className="text-4xl font-extrabold text-header tracking-tighter">
@@ -69,9 +74,9 @@ export default function page() {
             {name}
           </h1>
           <nav className="flex mt-2 gap-4 items-center">
-            <BsBellFill className="text-2xl text-darker-gray" />
-            <BsPersonCircle className="text-3xl text-darker-gray " />
-            <BsGearFill className="text-3xl text-darker-gray mr-3" />
+            <BsBellFill className="text-2xl text-grayText" />
+            <BsPersonCircle className="text-3xl text-grayText " />
+            <BsGearFill className="text-3xl text-grayText mr-3" />
           </nav>
         </header>
         <section>
@@ -134,7 +139,13 @@ export default function page() {
                 <BsPaperclip className="text-4xl text-header p-1 mr-3 rounded-full bg-btnWhite" />
                 <input type="file" className="top-[-3%] absolute w-8 opacity-0" />
               </div>
-              <input type="text" className="text-lg w-full mr-3" placeholder="Ask me anything!"/>
+              <input 
+                type="text" 
+                className="text-lg w-full mr-3" 
+                placeholder="Ask me anything!"
+                value={query || openInput}
+                onChange={(e) => {setOpenInput(e.target.value)}}
+              />
               <Mic output="text-4xl text-header p-2.5 rounded-full bg-btnWhite" />
             </figure>
             <button
