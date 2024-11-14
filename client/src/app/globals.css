@@ -59,7 +59,6 @@ body {
         linear-gradient(
           137.48deg,
           #ffdb3b 10%,
-          #009f00 45%,
           #8f51ea 67%,
           #0044ff 87%
         );
@@ -112,6 +111,7 @@ body {
   
     .btn:hover {
       transform: scale(1.1);
+      filter: brightness(100%)
     }
   
     .btn:active {
