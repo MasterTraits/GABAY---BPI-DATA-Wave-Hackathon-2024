@@ -1,12 +1,20 @@
+'use client'
 import Image from "next/image";
 import Dots from "@/assets/Dots.svg";
 import { BsSendArrowDown } from "react-icons/bs";
 import Mic from "@/assets/Mic";
 import "./app.module.css"
 
+import { useState } from 'react'
+
 export default function Home() {
+  const [ openInput, setOpenInput ] = useState({
+    inputbool: false,
+    placeholderText: "Empower your Business"
+  });
+
   return (
-    <main className="h-screen flex items-center overflow-hidden p-6 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+    <main className="bg-background h-screen flex items-center overflow-hidden p-6 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <section>
         <h1 className="w-3/4 ml-2 text-4xl font-bold tracking-tight mb-6">
           Harness the Power of Data with
@@ -14,16 +22,24 @@ export default function Home() {
         </h1>
         <div className="w-full pb-5">
           <form>
-            <div className="flex items-center gap-2 bg-white rounded-3xl px-4 h-14 drop-shadow-[0_0_20px_rgb(0,0,0,0.25)]">
+            <div className="flex items-center gap-2 bg-white rounded-3xl px-4 h-14 drop-shadow-[0_0_20px_rgb(0,0,0,0.4)]">
               <div className="flex gap-4 items-center w-full">
                 <input
                   type="text"
                   className="mx-2 text-lg w-full"
-                  placeholder="Empower your Business"
+                  placeholder={openInput.placeholderText}
+                  onClick={() => setOpenInput({ ...openInput, inputbool: !openInput.inputbool })}
+                  onChange={() => setOpenInput({ ...openInput, placeholderText: "" })}
                 />
               </div>
-              <Mic output="text-4xl text-header p-2.5 rounded-full bg-btnWhite" />
-              <BsSendArrowDown className="text-4xl bg-btnWhite p-1.5 rounded-full h-10 w-14" />
+              {!openInput.inputbool ? 
+                <div className="flex gap-2 items-center">
+                  <Mic className="text-4xl text-header p-2.5 rounded-full bg-btnWhite" />
+                  <BsSendArrowDown className="text-4xl bg-btnWhite p-1.5 rounded-full h-10 w-10" />
+                </div>
+                : ""
+              }
+              
             </div>
           </form>
         </div>
@@ -67,9 +83,13 @@ export default function Home() {
         <div className="fixed items-center justify-center w-56 h-56 top-[-15%] left-[-25%] bg-blue rounded-full"></div>
         <Image src={Dots} className="fixed top-0 right-0" alt="Dots" />
         <div className="fixed bg-gold w-56 h-72 top-5 right-[-40%] rounded-full"></div>
-        <Image src={Dots} className="fixed bottom-0 left-0" alt="Dots" />
+        <Image src={Dots} className="fixed bottom-[-5%] left-0" alt="Dots" />
         <div className="fixed bg-blue w-72 h-96 right-[-10%] bottom-[-15%] rounded-full"></div>
       </article>
+      <footer className="flex items-center justify-evenly px-5 backdrop-blur-sm  bg-background/80 fixed bottom-0 right-0 h-20 w-full z-20 rounded-t-2xl">
+        <button className="border-4 border-blue text-blue p-2 w-36 rounded-3xl">Login</button>
+        <button className="bg-blue text-white p-2 rounded-3xl w-36">Register</button>
+      </footer>
     </main>
   );
 }
