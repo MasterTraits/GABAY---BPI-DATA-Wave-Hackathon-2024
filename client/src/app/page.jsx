@@ -6,7 +6,7 @@ import { BsSendArrowDown } from "react-icons/bs";
 import Mic from "@/assets/Mic";
 import "./app.module.css"
 
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { useMyContext } from "@/components/QueryContext";
 
 export default function Home() {
@@ -18,7 +18,7 @@ export default function Home() {
     e.preventDefault();
 
     setQuery(inputText);
-    // window.location.href = '/dashboard'
+    window.location.href = `/dashboard?query=${encodeURIComponent(inputText)}`;
   }
 
   return (
@@ -97,7 +97,7 @@ export default function Home() {
       </article>
       <footer className="flex items-center justify-evenly px-5 backdrop-blur-sm  bg-background/80 fixed bottom-0 right-0 h-24 w-full z-20 rounded-t-2xl">
         <Link href="/login"><button className="bg-blue text-white p-3 rounded-3xl w-40">Login</button></Link>
-        <Link href="/regsiter">
+        <Link href="/register">
           <button className="bg-gold text-white p-3 rounded-3xl w-40">Register</button>
         </Link>
       </footer>

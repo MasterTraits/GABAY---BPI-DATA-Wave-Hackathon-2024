@@ -17,7 +17,7 @@ import Chart from "chart.js/auto";
 import PieChart from "@/components/charts/Piechart";
 
 // React.js
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useMyContext } from "@/components/QueryContext";
 
 Chart.register(CategoryScale);
@@ -27,9 +27,8 @@ export default function page() {
   const [showDashboard, setShowDashboard] = useState(true);
   const [userVisuals, setUserVisuals] = useState(false);
   const [showAISuggest, setShowAISuggest] = useState(false);
-  const [openInput, setOpenInput] = useState("");
-  const { query } = useMyContext();
-  console.log(query)
+  const [queryInput, setTextInput] = useState("");
+  const [queryParam, setQueryParam] = useState('');
 
   const [chartData, setChartData] = useState({
     labels: ["Red", "Orange", "Blue"],
@@ -64,6 +63,12 @@ export default function page() {
     setShowDashboard(false);
   };
   
+  useEffect(() => {
+    // Access the query parameters using JavaScript
+    const searchParams = new URLSearchParams(window.location.search);
+    const param = searchParams.get('query'); // Replace 'exampleParam' with your actual query key
+    setQueryParam(param); // Set state to parameter value or empty string if not found
+  }, []); // Empty dependency array so it only runs once on mount
 
   return (
     <>
@@ -71,8 +76,8 @@ export default function page() {
         <Image src={Dots} className="absolute bottom-0 left-0 z-0 opacity-30" />
         <header className="relative flex items-start justify-between mb-5">
           <h1 className="text-4xl font-extrabold text-header tracking-tighter">
-            Welcome, <br/> 
-            {query}
+            Welcome, <br/>
+            Guest 
           </h1>
           <nav className="flex mt-2 gap-4 items-center">
             <BsBellFill className="text-2xl text-grayText" />
@@ -144,8 +149,8 @@ export default function page() {
                 type="text" 
                 className="text-lg w-full mr-3" 
                 placeholder="Ask me anything!"
-                value={query || openInput}
-                onChange={(e) => {setOpenInput(e.target.value)}}
+                value={queryInput || queryParam}
+                onChange={(e) => {setTextInput(e.target.value)}}
               />
               <Mic output="text-4xl text-header p-2.5 rounded-full bg-btnWhite" />
             </figure>

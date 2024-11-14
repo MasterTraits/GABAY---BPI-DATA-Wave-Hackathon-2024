@@ -12,7 +12,7 @@ export default function QueryContext({children}) {
       {children}
     </MyContext.Provider>
   );
-}
+};
 
 export const useMyContext = () => {
   return useContext(MyContext);
