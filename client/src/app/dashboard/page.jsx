@@ -29,6 +29,7 @@ export default function page() {
   const [showAISuggest, setShowAISuggest] = useState(false);
   const [openInput, setOpenInput] = useState("");
   const { query } = useMyContext();
+  console.log(query)
 
   const [chartData, setChartData] = useState({
     labels: ["Red", "Orange", "Blue"],
@@ -71,7 +72,7 @@ export default function page() {
         <header className="relative flex items-start justify-between mb-5">
           <h1 className="text-4xl font-extrabold text-header tracking-tighter">
             Welcome, <br/> 
-            {name}
+            {query}
           </h1>
           <nav className="flex mt-2 gap-4 items-center">
             <BsBellFill className="text-2xl text-grayText" />

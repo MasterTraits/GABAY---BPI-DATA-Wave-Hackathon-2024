@@ -18,6 +18,7 @@ export default function Home() {
     e.preventDefault();
 
     setQuery(inputText);
+    // window.location.href = '/dashboard'
   }
 
   return (
@@ -45,44 +46,44 @@ export default function Home() {
 
                 : ""
               }
-              <button type="submit" onClick={() => window.location.href = '/dashboard'}>
+              <button type="submit">
                 <BsSendArrowDown className="text-4xl bg-btnWhite p-1.5 rounded-full h-10 w-10" />
               </button>
             </div>
           </form>
         </div>
         <div className="flex gap-3">
-          <button class="btn" type="button">
+          <button className="btn" type="button">
             <strong className="cuzImStrong">CSV</strong>
             <div id="container-stars">
               <div id="stars"></div>
             </div>
 
             <div id="glow">
-              <div class="circle"></div>
-              <div class="circle"></div>
+              <div className="circle"></div>
+              <div className="circle"></div>
             </div>
           </button>
-          <button class="btn" type="button" onClick={() => window.location.href = '/dashboard'}>
+          <button className="btn" type="button">
             <strong className="cuzImStrong">PDF</strong>
             <div id="container-stars">
               <div id="stars"></div>
             </div>
 
             <div id="glow">
-              <div class="circle"></div>
-              <div class="circle"></div>
+              <div className="circle"></div>
+              <div className="circle"></div>
             </div>
           </button>
-          <button class="btn" type="button">
+          <button className="btn" type="button">
             <strong className="cuzImStrong">Spreadsheet</strong>
             <div id="container-stars">
               <div id="stars"></div>
             </div>
 
             <div id="glow">
-              <div class="circle"></div>
-              <div class="circle"></div>
+              <div className="circle"></div>
+              <div className="circle"></div>
             </div>
           </button>
         </div>
