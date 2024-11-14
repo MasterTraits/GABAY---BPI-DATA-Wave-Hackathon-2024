@@ -93,7 +93,7 @@ export default function page() {
                 onClick={() => setShowAISuggest(!showAISuggest)}
               />
             </div>
-          )}
+          )}  
           {userVisuals && ""}
         </section>
 
@@ -110,7 +110,7 @@ export default function page() {
                     className="top-[-3%] absolute w-8 opacity-0"
                   />
                 </div>
-                <inptu
+                <input
                   type="text"
                   className="text-lg w-full mr-2"
                   placeholder="Ask me anything!"
