@@ -96,9 +96,9 @@ export default function ChatInterface() {
             <h1 className="w-3/4 ml-2 text-4xl font-bold tracking-tight mb-6">
               How can I help?
             </h1>
-            <div className="w-full pb-5">
+            <div className="w-full pb-5 z-50">
               <form>
-                <div className="flex items-center gap-2 bg-white rounded-3xl px-4 h-14 drop-shadow-[0_0_20px_rgb(0,0,0,0.4)]">
+                <div className="flex items-center gap-2 z-50 bg-white rounded-3xl px-4 h-14 drop-shadow-[0_0_20px_rgb(0,0,0,0.4)]">
                   <div className="flex gap-4 items-center w-full">
                     <input
                       type="text"
@@ -118,14 +118,14 @@ export default function ChatInterface() {
               </form>
             </div>
             <div className="flex gap-3">
-              <button className="btn" type="button">
+              <button className="btn z-50" type="button">
                 <strong className="cuzImStrong">CSV</strong>
                 <div id="container-stars">
                   <div id="stars"></div>
                 </div>
                 <div id="glow">
-                  <div className="circle"></div>
-                  <div className="circle"></div>
+                  <div className="circle z-0"></div>
+                  <div className="circle z-0"></div>
                 </div>
               </button>
               <button className="btn" type="button">
@@ -134,28 +134,23 @@ export default function ChatInterface() {
                   <div id="stars"></div>
                 </div>
                 <div id="glow">
-                  <div className="circle"></div>
-                  <div className="circle"></div>
+                  <div className="circle z-0"></div>
+                  <div className="circle z-0"></div>
                 </div>
               </button>
-              <button className="btn" type="button">
+              <button className="btn z-50" type="button">
                 <strong className="cuzImStrong">Spreadsheet</strong>
                 <div id="container-stars">
                   <div id="stars"></div>
-                </div>
-                <div id="glow">
-                  <div className="circle"></div>
-                  <div className="circle"></div>
                 </div>
               </button>
             </div>
           </section>
           <article className="relative">
             <div className="fixed items-center justify-center w-56 h-56 top-[-15%] left-[-25%] bg-blue rounded-full"></div>
-            <Image src={Dots} className="fixed top-0 right-0" alt="Dots" />
+            <Image src={Dots} className="fixed top-0 right-0 z-0" alt="Dots" />
             <div className="fixed bg-gold w-56 h-72 top-5 right-[-40%] rounded-full"></div>
             <Image src={Dots} className="fixed bottom-[-5%] left-0" alt="Dots" />
-            <div className="fixed bg-blue w-72 h-96 right-[-10%] bottom-[-15%] rounded-full"></div>
           </article>
         </section>
       ) : (
