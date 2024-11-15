@@ -5,9 +5,13 @@ import Dots from "@/assets/Dots.svg";
 import { BsSendArrowDown } from "react-icons/bs";
 import Mic from "@/assets/Mic";
 import "./app.module.css"
+import RangeSlider from "@/components/RangeSlider";
+import Checkbox from "@/components/IncomeExpenseTracker";
 
-import { useState, useContext, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useMyContext } from "@/components/QueryContext";
+import { gsap } from "gsap";
+import IncomeExpenseTracker from "@/components/IncomeExpenseTracker";
 
 
 export default function page() {
@@ -107,6 +111,41 @@ export default function page() {
           </footer>
         </main>
       </>
+    );
+  } else {
+    // useEffect(() => {
+    //   gsap.to(".animate-1", { opacity: 1, x: -300, 
+    //   }).then(()=> { return gsap.to(".animate-1", { duration: 1.5, x: -600 });
+    //   }).then(()=> { return gsap.to(".animate-1", { duration: 1, x: -400, y: -400 });
+    //   }).then(()=> { return gsap.to(".animate-1", { duration: 1.5, x: 30, y: -800, scale: 4 });
+    //   }).then(()=> { return gsap.to(".animate-1", { opacity: 0, x: 60, zIndex: -1})
+    //   })
+
+    //   gsap.to(".animate-2", { opacity: 1, x: 300,
+    //   }).then(()=> { return gsap.to(".animate-2", { duration: 1.5, x: 600 });
+    //   }).then(()=> { return gsap.to(".animate-2", { duration: 1, x: 400, y: 400 });
+    //   }).then(()=> { return gsap.to(".animate-2", { duration: 1.5, x: -30, y: 800, scale: 4 });
+    //   }).then(()=> { return gsap.to(".animate-2", { opacity: 0, x: -60, zIndex: -1})
+    //   })
+    // }, []);
+
+    return (
+      <main className="py-8 px-6 bg-background h-screen w-full">
+        {/* <div className="animate-1 fixed bg-blue w-96 h-96 right-[-90%] bottom-[-15%] rounded-full z-10"></div>
+        <div className="animate-2 fixed bg-gold w-96 h-96 left-[-90%] top-[-15%] rounded-full z-10"></div> */}
+        <Image src={Dots} className="fixed top-0 left-0 z-[-1]" alt="Dots" />
+        <Image src={Dots} className="fixed bottom-[-5%] right-0 z-[-1]" alt="Dots" />
+
+        <h1 className="font-bold tracking-tight mb-5 drop-shadow-[0_0_20px_rgb(0,0,0,0.2)]">
+          <b className="text-[50px] gradient-custom">GABAY</b>
+        </h1>
+        <div className="flex flex-col gap-4 *:drop-shadow-[0_0_20px_rgb(0,0,0,0.1)]">
+          <RangeSlider min={0} max={100} step={1} defaultValue={50} onChange={(value) => console.log(value)} />
+          <RangeSlider min={0} max={100} step={1} defaultValue={50} onChange={(value) => console.log(value)} />
+          <RangeSlider min={0} max={100} step={1} defaultValue={50} onChange={(value) => console.log(value)} />
+          <IncomeExpenseTracker />
+        </div>
+      </main>
     );
   }
 }
