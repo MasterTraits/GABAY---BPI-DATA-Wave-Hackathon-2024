@@ -32,7 +32,9 @@ export default function RootLayout({ children }) {
       <body
         className={`${inter.className} antialiased`}
       > 
-        <QueryContext className="sm:hidden">{children}</QueryContext>
+        <QueryContext>
+          {children}
+        </QueryContext>
       </body>
     </html>
   );
