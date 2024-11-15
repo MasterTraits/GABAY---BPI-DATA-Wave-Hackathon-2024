@@ -14,12 +14,14 @@ import Link from "next/link";
 import Image from "next/image";
 import { CategoryScale } from "chart.js";
 import Chart from "chart.js/auto";
-import PieChart from "@/components/charts/Piechart";
-
+import { Bar } from 'react-chartjs-2';
 // React.js
 import { useState, useEffect } from "react";
 import { useMyContext } from "@/components/QueryContext";
-
+import TypingAnimation from "@/components/typingAnim";
+import LineChart from "@/components/charts/Linecharts";
+import BarChart from "@/components/charts/BarChart";
+import DonutChart from "@/components/charts/DonutChart";
 Chart.register(CategoryScale);
 let name = "Guest"; 
 
@@ -30,21 +32,19 @@ export default function page() {
   const [queryInput, setTextInput] = useState("");
   const [queryParam, setQueryParam] = useState('');
 
-  const [chartData, setChartData] = useState({
-    labels: ["Red", "Orange", "Blue"],
+  const [lineChartData, setLineChartData] = useState({
+    labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"], // Days of the week
     datasets: [
       {
-        label: "Users Gained ",
-        data: [55, 23, 96],
-        backgroundColor: [
-          // "rgba(75,192,192,1)", // Teal
-          "#ecf0f1", // Light Gray
-          // "#50AF95", // Green
-          "#F4BE37", // Yellow
-          "#3F56FF", // Blue
-        ],
-        borderColor: "black",
-        borderWidth: 2,
+        label: "Sales ($)",
+        data: [120, 150, 170, 200, 180, 220, 250],
+        backgroundColor: "rgba(75,192,192,0.2)",
+        borderColor: "#4CAF50",
+        borderWidth: 3, 
+        pointBackgroundColor: "#FF5722", 
+        pointBorderColor: "#FFFFFF", 
+        pointBorderWidth: 2,
+        tension: 0.4, 
       },
     ],
   });
@@ -71,100 +71,103 @@ export default function page() {
   }, []); // Empty dependency array so it only runs once on mount
 
   return (
-    <>
-      <main className="relative bg-background py-7 px-6 h-screen overflow-hidden">
-        <Image src={Dots} className="absolute bottom-0 left-0 z-0 opacity-30" />
-        <header className="relative flex items-start justify-between mb-5">
-          <h1 className="text-4xl font-extrabold text-header tracking-tighter">
-            Welcome, <br/>
-            Guest 
-          </h1>
-          <nav className="flex mt-2 gap-4 items-center">
-            <BsBellFill className="text-2xl text-grayText" />
-            <BsPersonCircle className="text-3xl text-grayText " />
-            <BsGearFill className="text-3xl text-grayText mr-3" />
-          </nav>
-        </header>
-        <section>
-          <group className="flex gap-2">
-            <Link href="/aichat">
-              <button className="rounded-full py-2 px-4 border-2 border-blue text-blue hover:bg-blue hover:border-none hover:text-white font-semibold mb-8 hover:scale-[1em]">
-                New Chat &nbsp;+
-              </button>
-            </Link>
-            <button className="rounded-full py-2 px-4 border-2 border-blue text-blue hover:bg-blue hover:border-none hover:text-white font-semibold mb-8 hover:scale-[1em]">
-              Upload
-            </button>
-          </group>
-          {/* BUTTONS for Dashboard & Custom */}
-          <div className="bg-gold flex items-center justify-evenly h-10 w-full mb-3 *:rounded-[20px_20px_0_0] rounded-[20px_20px_0_0]">
-            <p
-              onClick={showFDashboard}
-              className={`${
-                showDashboard ? "bg-blue" : "bg-gold"
-              } text-white w-full h-full p-2 text-center font-semibold rounded-lg`}
-            >
-              Dashboard
-            </p>
-            <p
-              onClick={showSuggestions}
-              className={`${
-                userVisuals ? "bg-blue" : "bg-gold"
-              } text-white w-full h-full p-2 text-center font-semibold rounded-lg`}
-            >
-              Custom
-            </p>
+    <main className="relative h-screen w-full overflow-hidden bg-background">
+    {/* Fixed header section */}
+    <div className="absolute top-0 left-0 right-0 z-10 bg-background px-6 pt-7">
+      <header className="relative flex items-start justify-between mb-5">
+        <h1 className="text-4xl font-extrabold text-header tracking-tighter">
+          Welcome, <br />
+          Fabella
+        </h1>
+        <nav className="flex mt-2 gap-4 items-center">
+          <BsBellFill className="text-2xl text-grayText" />
+          <BsPersonCircle className="text-3xl text-grayText" />
+          <BsGearFill className="text-3xl text-grayText mr-3" />
+        </nav>
+      </header>
+
+      <group className="flex gap-2">
+        <Link href="/aichat">
+          <button className="rounded-full py-2 px-4 border-2 border-blue text-blue hover:bg-blue hover:border-none hover:text-white font-semibold mb-8 hover:scale-[1em]">
+            New Chat &nbsp;+
+          </button>
+        </Link>
+        <button className="rounded-full py-2 px-4 border-2 border-blue text-blue hover:bg-blue hover:border-none hover:text-white font-semibold mb-8 hover:scale-[1em]">
+          Upload
+        </button>
+      </group>
+
+      {/* Tab buttons */}
+      <div className="bg-gold flex items-center justify-evenly h-10 w-full mb-3 rounded-[20px_20px_0_0]">
+        <p
+          onClick={showFDashboard}
+          className={`${
+            showDashboard ? "bg-blue" : "bg-gold"
+          } text-white w-full h-full p-2 text-center font-semibold rounded-lg cursor-pointer`}
+        >
+          Dashboard
+        </p>
+        <p
+          onClick={showSuggestions}
+          className={`${
+            userVisuals ? "bg-blue" : "bg-gold"
+          } text-white w-full h-full p-2 text-center font-semibold rounded-lg cursor-pointer`}
+        >
+          Custom
+        </p>
+      </div>
+    </div>
+
+    {/* Scrollable content area */}
+    <div className="absolute top-[250px] bottom-[80px] left-0 right-0 overflow-y-auto px-6">
+      {showDashboard && (
+        <div className="grid grid-cols-1 md:grid-cols-2 auto-rows-min gap-4 pb-6">
+          {/* Full width chart */}
+          <div className="col-span-1 md:col-span-2 bg-white p-4 rounded-2xl shadow-lg min-h-[300px]" 
+               onClick={() => setShowAISuggest(!showAISuggest)}>
+            <LineChart chartData={lineChartData} className="w-full h-full" />
           </div>
 
-          {/* THE CHARTS */}
-          {showDashboard && (
-            <div className="grid grid-cols-2 gap-3 justify-center items-center *:rounded-2xl *:bg-white *:p-3 h-full w-full drop-shadow-[0_0_20px_rgb(0,0,0,0.1)]">
-              <div onClick={() => setShowAISuggest(!showAISuggest)}>
-                <PieChart
-                  chartData={chartData}
-                  className="h-full w-full"
-                />
-              </div>
-              <div onClick={() => setShowAISuggest(!showAISuggest)}>
-                <PieChart
-                  chartData={chartData}
-                  className="h-full w-full"
-                />
-              </div>
-            </div>
-          )}
-          {userVisuals && ""}
-        </section>
+          {/* Half width charts */}
+          <div className="bg-white p-4 rounded-2xl shadow-lg min-h-[300px]">
+            <DonutChart />
+          </div>
+          <div className="bg-white p-4 rounded-2xl shadow-lg min-h-[300px]">
+            <BarChart />
+          </div>
+        </div>
+      )}
+      {userVisuals && ""}
+    </div>
 
-        <article className="absolute h-screen w-screen"></article>
+    {/* Fixed footer */}
+    <footer className="absolute bottom-0 left-0 right-0 z-20 bg-background px-6 py-4">
+      <form onSubmit={handleSubmit} className="flex gap-2 max-w-[1200px] mx-auto">
+        <figure className="flex items-center bg-white rounded-3xl px-4 h-14 flex-1 drop-shadow-[0_0_20px_rgb(0,0,0,0.25)]">
+          <div className="relative">
+            <BsPaperclip className="text-4xl text-header p-1 mr-3 rounded-full bg-btnWhite" />
+            <input type="file" className="top-[-3%] absolute w-8 opacity-0" />
+          </div>
+          <input
+            type="text"
+            className="text-lg flex-1 mr-3"
+            placeholder="Ask me anything!"
+            value={queryInput || queryParam}
+            onChange={(e) => { setTextInput(e.target.value) }}
+          />
+          <Mic className="output text-4xl text-header p-2.5 rounded-full bg-btnWhite" />
+        </figure>
+        <button
+          type="submit"
+          className="relative h-14 w-14 rounded-full bg-blue flex-shrink-0"
+        >
+          <BsSendArrowDown className="absolute text-3xl text-btnWhite top-3.5 left-2.5" />
+        </button>
+      </form>
+    </footer>
 
-        <footer className="absolute z-20 bottom-8 w-full left-4 right-0 grid place-items-center">
-          <form onSubmit={handleSubmit} className="flex gap-2">
-            <figure className="flex items-center bg-white rounded-3xl px-4 h-14 w-9/12 drop-shadow-[0_0_20px_rgb(0,0,0,0.25)]">
-              <div className="relative">
-                <BsPaperclip className="text-4xl text-header p-1 mr-3 rounded-full bg-btnWhite" />
-                <input type="file" className="top-[-3%] absolute w-8 opacity-0" />
-              </div>
-              <input 
-                type="text" 
-                className="text-lg w-full mr-3" 
-                placeholder="Ask me anything!"
-                value={queryInput || queryParam}
-                onChange={(e) => {setTextInput(e.target.value)}}
-              />
-              <Mic output="text-4xl text-header p-2.5 rounded-full bg-btnWhite" />
-            </figure>
-            <button
-              type="submit"
-              className="relative h-14 w-14 rounded-full bg-blue"
-            >
-              <BsSendArrowDown className="absolute text-3xl text-btnWhite top-3.5 left-2.5" />
-            </button>
-          </form>
-        </footer>
-      </main>
-      {showAISuggest && viewAISuggest({ setShowAISuggest }) }
-    </>
+    {showAISuggest && viewAISuggest({ setShowAISuggest })}
+  </main>
   );
 }
 
@@ -184,13 +187,30 @@ function viewAISuggest({ setShowAISuggest }) {
             src="https://site-assets.fontawesome.com/releases/v6.6.0/svgs/solid/sparkles.svg"
             className="h-8 w-8 mr-4 pb-1 brightness-[1000%] inline-block"
           />
-          <span className="leading-relaxed">
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
-            ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-            nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse 
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui 
-            officia deserunt mollit anim id est laborum."
-          </span>
+        <TypingAnimation
+  text={`
+    <strong>Description of the Data:</strong><br />
+    The dataset represents the <strong>sales figures</strong> for each day of the week, where each value corresponds to the total sales for a specific day:<br />
+    <strong>Monday:</strong> $120<br />
+    <strong>Tuesday:</strong> $150<br />
+    <strong>Wednesday:</strong> $170<br />
+    <strong>Thursday:</strong> $200<br />
+    <strong>Friday:</strong> $180<br />
+    <strong>Saturday:</strong> $220<br />
+    <strong>Sunday:</strong> $250<br /><br />
+
+    The dataset tracks daily sales, starting from Monday and increasing toward Sunday. The sales figures show an upward trend, indicating that sales grow throughout the week, with the highest sales recorded on Sunday at $250. The pattern suggests a typical trend where weekends, particularly Sundays, see higher sales compared to weekdays.<br /><br />
+
+    This data could be used for analyzing weekly sales performance and understanding trends in customer behavior, such as peak shopping times or days with higher consumer spending.<br /><br />
+    
+    Let me know if you need further details or modifications for this!<br />
+  `}
+  speed={0.01}
+  delay={0.5}
+  cursor={true}
+  loop={false}
+/>
+
         </p>
       </main>
     </main>

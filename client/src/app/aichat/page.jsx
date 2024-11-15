@@ -88,7 +88,8 @@ export default function ChatInterface() {
   };
 
   return (
-    <main className="h-screen overflow-hidden bg-background text-black p-2">
+    <>
+    <main className="h-screen overflow-hidden bg-background text-black p-2 z-0">
       {!showResult ? (
         <section className="bg-background h-screen flex items-center overflow-hidden p-6 sm:p-20 font-[family-name:var(--font-geist-sans)]">
           <section>
@@ -105,7 +106,7 @@ export default function ChatInterface() {
                       onChange={(e) => setInput(e.target.value)}
                       className="text-lg w-full mr-2 focus:outline-none"
                       placeholder="Ask me anything!"
-                    />
+                      />
                   </div>
                   <div className="flex gap-2 items-center">
                     <Mic className="text-4xl text-header p-2.5 rounded-full bg-btnWhite" />
@@ -264,14 +265,14 @@ export default function ChatInterface() {
                     onChange={(e) => setInput(e.target.value)}
                     className="text-lg w-full mr-2 focus:outline-none"
                     placeholder="Ask me anything!"
-                  />
+                    />
                 </div>
                 <Mic className="text-4xl text-header p-2.5 rounded-full bg-btnWhite" />
               </div>
               <button
                 onClick={onSent}
                 className="relative ml-2 h-14 w-14 rounded-full bg-blue"
-              >
+                >
                 <BsSendArrowDown className="absolute text-3xl text-btnWhite top-3.5 left-2.5" />
               </button>
             </section>
@@ -279,5 +280,6 @@ export default function ChatInterface() {
         </>
       )}
     </main>
+      </>
   );
 }
