@@ -9,7 +9,7 @@ import { MdClose } from "react-icons/md";
 import { CiSearch } from "react-icons/ci";
 import { BsPaperclip } from "react-icons/bs";
 import { BsSendArrowDown } from "react-icons/bs";
-
+import GABAY from '@/assets/GABAYY.png';
 import Mic from "@/assets/Mic";
 import runChat from "@/config/gemini"; 
 import '@/app/app.module.css'
@@ -65,7 +65,7 @@ export default function ChatInterface() {
     setLoading(true);
     setShowResult(true);
     setPrevChat(input);
-    const truncatedInput = input.length > 10 ? `${input.substring(0, 10)}...` : input;
+    const truncatedInput = input.length > 20 ? `${input.substring(0, 20)}...` : input;
     setPrevChat(truncatedInput); 
     const response = await runChat(input);
     const formattedResponse = response.replace(/"([^"]*)\*\*([^*]+)\*\*([^"]*)"/, '"$1<b>$2</b>$3"')
@@ -88,16 +88,17 @@ export default function ChatInterface() {
   };
 
   return (
-    <main className="h-screen overflow-hidden bg-background text-black p-2">
+    <>
+    <main className="h-screen overflow-hidden bg-background text-black p-2 z-0">
       {!showResult ? (
         <section className="bg-background h-screen flex items-center overflow-hidden p-6 sm:p-20 font-[family-name:var(--font-geist-sans)]">
           <section>
             <h1 className="w-3/4 ml-2 text-4xl font-bold tracking-tight mb-6">
               How can I help?
             </h1>
-            <div className="w-full pb-5">
+            <div className="w-full pb-5 z-50">
               <form>
-                <div className="flex items-center gap-2 bg-white rounded-3xl px-4 h-14 drop-shadow-[0_0_20px_rgb(0,0,0,0.4)]">
+                <div className="flex items-center gap-2 z-50 bg-white rounded-3xl px-4 h-14 drop-shadow-[0_0_20px_rgb(0,0,0,0.4)]">
                   <div className="flex gap-4 items-center w-full">
                     <input
                       type="text"
@@ -105,7 +106,7 @@ export default function ChatInterface() {
                       onChange={(e) => setInput(e.target.value)}
                       className="text-lg w-full mr-2 focus:outline-none"
                       placeholder="Ask me anything!"
-                    />
+                      />
                   </div>
                   <div className="flex gap-2 items-center">
                     <Mic className="text-4xl text-header p-2.5 rounded-full bg-btnWhite" />
@@ -117,14 +118,14 @@ export default function ChatInterface() {
               </form>
             </div>
             <div className="flex gap-3">
-              <button className="btn" type="button">
+              <button className="btn z-50" type="button">
                 <strong className="cuzImStrong">CSV</strong>
                 <div id="container-stars">
                   <div id="stars"></div>
                 </div>
                 <div id="glow">
-                  <div className="circle"></div>
-                  <div className="circle"></div>
+                  <div className="circle z-0"></div>
+                  <div className="circle z-0"></div>
                 </div>
               </button>
               <button className="btn" type="button">
@@ -133,28 +134,23 @@ export default function ChatInterface() {
                   <div id="stars"></div>
                 </div>
                 <div id="glow">
-                  <div className="circle"></div>
-                  <div className="circle"></div>
+                  <div className="circle z-0"></div>
+                  <div className="circle z-0"></div>
                 </div>
               </button>
-              <button className="btn" type="button">
+              <button className="btn z-50" type="button">
                 <strong className="cuzImStrong">Spreadsheet</strong>
                 <div id="container-stars">
                   <div id="stars"></div>
-                </div>
-                <div id="glow">
-                  <div className="circle"></div>
-                  <div className="circle"></div>
                 </div>
               </button>
             </div>
           </section>
           <article className="relative">
             <div className="fixed items-center justify-center w-56 h-56 top-[-15%] left-[-25%] bg-blue rounded-full"></div>
-            <Image src={Dots} className="fixed top-0 right-0" alt="Dots" />
+            <Image src={Dots} className="fixed top-0 right-0 z-0" alt="Dots" />
             <div className="fixed bg-gold w-56 h-72 top-5 right-[-40%] rounded-full"></div>
             <Image src={Dots} className="fixed bottom-[-5%] left-0" alt="Dots" />
-            <div className="fixed bg-blue w-72 h-96 right-[-10%] bottom-[-15%] rounded-full"></div>
           </article>
         </section>
       ) : (
@@ -232,11 +228,11 @@ export default function ChatInterface() {
                       <p>{message.text}</p>
                     </div>
                   ) : (
-                    <div className="flex items-start max-w-[95%]">
-                      <div className="rounded-full p-[5px] mr-1 bg-header">
-                        <GoCopilot className="text-3xl text-white" />
-                      </div>
-                      <div className="bg-gray-200 px-4 py-2 rounded-lg rounded-bl-none">
+                    <div className="flex items-start w-full max-w-[95%]">
+                    <div className="rounded-full w-[2.5rem] h-[2.5rem] p-[10px] mr-1 bg-header flex-shrink-0">
+                      <Image src={GABAY} className="w-full h-full object-cover" loading="eager" placeholder="empty" />
+                    </div>
+                      <div className="flex-1 bg-gray-200 px-4 py-2 rounded-lg rounded-bl-none">
                         <TypewriterText text={message.text} />
                       </div>
                     </div>
@@ -264,14 +260,14 @@ export default function ChatInterface() {
                     onChange={(e) => setInput(e.target.value)}
                     className="text-lg w-full mr-2 focus:outline-none"
                     placeholder="Ask me anything!"
-                  />
+                    />
                 </div>
                 <Mic className="text-4xl text-header p-2.5 rounded-full bg-btnWhite" />
               </div>
               <button
                 onClick={onSent}
                 className="relative ml-2 h-14 w-14 rounded-full bg-blue"
-              >
+                >
                 <BsSendArrowDown className="absolute text-3xl text-btnWhite top-3.5 left-2.5" />
               </button>
             </section>
@@ -279,5 +275,6 @@ export default function ChatInterface() {
         </>
       )}
     </main>
+      </>
   );
-}
+} 

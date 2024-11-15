@@ -1,15 +1,15 @@
-import { Pie } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 
-function PieChart({ chartData }) {
+function LineChart2({chartData}) {
   return (
     <div className="chart-container">
-      <Pie
+      <Line
         data={chartData}
         options={{
           plugins: {
             title: {
               display: true,
-              text: "Users Gained"
+              text: "Possible Sales Next Week"
             },
           }
         }}
@@ -17,4 +17,5 @@ function PieChart({ chartData }) {
     </div>
   );
 }
-export default PieChart;
+
+export default LineChart2;

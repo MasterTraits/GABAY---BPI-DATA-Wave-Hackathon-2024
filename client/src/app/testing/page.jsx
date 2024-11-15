@@ -37,7 +37,6 @@ const ComponentB = () => {
   );
 };
 
-// 5. Wrap your app with the provider and use the components
 const page = () => (
   <MyProvider>
     <ComponentA />

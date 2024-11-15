@@ -19,9 +19,9 @@ import { Bar } from 'react-chartjs-2';
 import { useState, useEffect } from "react";
 import { useMyContext } from "@/components/QueryContext";
 import TypingAnimation from "@/components/typingAnim";
-import LineChart from "@/components/charts/Linecharts";
-import BarChart from "@/components/charts/BarChart";
-import DonutChart from "@/components/charts/DonutChart";
+import LineChart2 from "@/components/charts/Linechart2";
+import BarChart from "@/components/charts/BarChart2";
+import DonutChart from "@/components/charts/DonutChart2";
 Chart.register(CategoryScale);
 let name = "Guest"; 
 
@@ -37,7 +37,7 @@ export default function page() {
     datasets: [
       {
         label: "Sales ($)",
-        data: [120, 150, 170, 200, 180, 220, 250],
+        data: [150, 170, 190, 200, 220, 250, 270],
         backgroundColor: "rgba(75,192,192,0.2)",
         borderColor: "#4CAF50",
         borderWidth: 3, 
@@ -76,8 +76,8 @@ export default function page() {
     <div className="absolute top-0 left-0 right-0 z-10 bg-background px-6 pt-7">
       <header className="relative flex items-start justify-between mb-5">
         <h1 className="text-4xl font-extrabold text-header tracking-tighter">
-          Welcome, <br />
-          Fabella
+          Simulated, <br />
+          Data
         </h1>
         <nav className="flex mt-2 gap-4 items-center">
           <BsBellFill className="text-2xl text-grayText" />
@@ -126,7 +126,7 @@ export default function page() {
           {/* Full width chart */}
           <div className="col-span-1 md:col-span-2 bg-white p-4 rounded-2xl shadow-lg min-h-[300px]" 
                onClick={() => setShowAISuggest(!showAISuggest)}>
-            <LineChart chartData={lineChartData} className="w-full h-full" />
+            <LineChart2 chartData={lineChartData} className="w-full h-full" />
           </div>
 
           {/* Half width charts */}
@@ -190,21 +190,7 @@ function viewAISuggest({ setShowAISuggest }) {
           />
         <TypingAnimation
   text={`
-    <strong>Description of the Data:</strong><br />
-    The dataset represents the <strong>sales figures</strong> for each day of the week, where each value corresponds to the total sales for a specific day:<br />
-    <strong>Monday:</strong> $120<br />
-    <strong>Tuesday:</strong> $150<br />
-    <strong>Wednesday:</strong> $170<br />
-    <strong>Thursday:</strong> $200<br />
-    <strong>Friday:</strong> $180<br />
-    <strong>Saturday:</strong> $220<br />
-    <strong>Sunday:</strong> $250<br /><br />
-
-    The dataset tracks daily sales, starting from Monday and increasing toward Sunday. The sales figures show an upward trend, indicating that sales grow throughout the week, with the highest sales recorded on Sunday at $250. The pattern suggests a typical trend where weekends, particularly Sundays, see higher sales compared to weekdays.<br /><br />
-
-    This data could be used for analyzing weekly sales performance and understanding trends in customer behavior, such as peak shopping times or days with higher consumer spending.<br /><br />
-    
-    Let me know if you need further details or modifications for this!<br />
+ import new message that corrolates sa question na ilalagay ni emman
   `}
   speed={0.01}
   delay={0.5}

@@ -68,8 +68,8 @@ export default function page() {
                 </div>
 
                 <div id="glow">
-                  <div className="circle"></div>
-                  <div className="circle"></div>
+                  <div className="circle z-0"></div>
+                  <div className="circle z-0"></div>
                 </div>
               </button>
               <button className="btn" type="button">
@@ -79,11 +79,11 @@ export default function page() {
                 </div>
 
                 <div id="glow">
-                  <div className="circle"></div>
-                  <div className="circle"></div>
+                  <div className="circle z-0"></div>
+                  <div className="circle z-0"></div>
                 </div>
               </button>
-              <button className="btn" type="button">
+              <button className="btn z-50" type="button">
                 <strong className="cuzImStrong">Spreadsheet</strong>
                 <div id="container-stars">
                   <div id="stars"></div>
