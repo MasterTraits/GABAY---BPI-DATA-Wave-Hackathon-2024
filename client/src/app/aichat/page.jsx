@@ -9,7 +9,7 @@ import { MdClose } from "react-icons/md";
 import { CiSearch } from "react-icons/ci";
 import { BsPaperclip } from "react-icons/bs";
 import { BsSendArrowDown } from "react-icons/bs";
-
+import GABAY from '@/assets/GABAYY.png';
 import Mic from "@/assets/Mic";
 import runChat from "@/config/gemini"; 
 import '@/app/app.module.css'
@@ -65,7 +65,7 @@ export default function ChatInterface() {
     setLoading(true);
     setShowResult(true);
     setPrevChat(input);
-    const truncatedInput = input.length > 10 ? `${input.substring(0, 10)}...` : input;
+    const truncatedInput = input.length > 20 ? `${input.substring(0, 20)}...` : input;
     setPrevChat(truncatedInput); 
     const response = await runChat(input);
     const formattedResponse = response.replace(/"([^"]*)\*\*([^*]+)\*\*([^"]*)"/, '"$1<b>$2</b>$3"')
@@ -233,11 +233,11 @@ export default function ChatInterface() {
                       <p>{message.text}</p>
                     </div>
                   ) : (
-                    <div className="flex items-start max-w-[95%]">
-                      <div className="rounded-full p-[5px] mr-1 bg-header">
-                        <GoCopilot className="text-3xl text-white" />
-                      </div>
-                      <div className="bg-gray-200 px-4 py-2 rounded-lg rounded-bl-none">
+                    <div className="flex items-start w-full max-w-[95%]">
+                    <div className="rounded-full w-[2.5rem] h-[2.5rem] p-[10px] mr-1 bg-header flex-shrink-0">
+                      <Image src={GABAY} className="w-full h-full object-cover" loading="eager" placeholder="empty" />
+                    </div>
+                      <div className="flex-1 bg-gray-200 px-4 py-2 rounded-lg rounded-bl-none">
                         <TypewriterText text={message.text} />
                       </div>
                     </div>
@@ -282,4 +282,4 @@ export default function ChatInterface() {
     </main>
       </>
   );
-}
+} 
